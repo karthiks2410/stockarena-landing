@@ -16,19 +16,69 @@ export const metadata: Metadata = {
   description:
     "Play India's first stock market fantasy game! Pick real NSE/BSE stocks, compete with friends, track live prices, and win. Free to play - no real money involved.",
   keywords: [
+    // Primary keywords
     "stock market fantasy game",
-    "fantasy trading India",
-    "NSE BSE game",
-    "virtual stock trading",
-    "stock market game India",
-    "fantasy stocks",
-    "paper trading India",
-    "stock market competition",
-    "learn stock trading",
-    "stock picking game",
-    "trading simulator India",
+    "fantasy stock trading",
     "stock arena",
     "stocksarena",
+    "stocks arena",
+
+    // India-specific
+    "stock market game India",
+    "fantasy trading India",
+    "NSE fantasy game",
+    "BSE fantasy game",
+    "NSE BSE game",
+    "Indian stock market game",
+    "share market game India",
+    "share market fantasy",
+
+    // Trading related
+    "virtual stock trading",
+    "paper trading India",
+    "stock trading simulator",
+    "trading simulator India",
+    "learn stock trading",
+    "practice stock trading",
+    "stock market simulator",
+    "mock trading",
+    "demo trading India",
+
+    // Competition related
+    "stock market competition",
+    "stock picking game",
+    "stock picking contest",
+    "trading competition",
+    "fantasy stocks",
+    "fantasy portfolio",
+    "compete with friends stocks",
+
+    // Features
+    "real time stock prices",
+    "live stock tracking",
+    "Zerodha prices",
+    "real NSE prices",
+    "real BSE prices",
+    "free stock game",
+    "free trading game",
+
+    // User intent
+    "best stock market game",
+    "play stock market",
+    "stock market app India",
+    "fantasy finance app",
+    "investment game India",
+    "trading game free",
+    "stock game online",
+    "virtual portfolio India",
+
+    // Long-tail
+    "how to play stock market fantasy",
+    "stock market game for beginners",
+    "learn trading without money",
+    "practice trading NSE BSE",
+    "fantasy stock market league",
+    "daily stock contest India",
   ],
   authors: [{ name: "Stock Arena", url: "https://www.stocksarena.net" }],
   creator: "Stock Arena",
