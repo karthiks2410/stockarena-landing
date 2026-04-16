@@ -1,0 +1,9 @@
+# Stock Arena - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.stocksarena.net/sitemap.xml
+
+# Disallow API routes from indexing
+Disallow: /api/
