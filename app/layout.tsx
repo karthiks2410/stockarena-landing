@@ -13,8 +13,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.stocksarena.net"),
   title: {
-    default: "Stock Arena - India's #1 Stock Market Fantasy Game",
-    template: "%s | Stock Arena",
+    default: "Stocks Arena - India's #1 Stock Market Fantasy Game",
+    template: "%s | Stocks Arena",
   },
   description:
     "Play India's first stock market fantasy game! Pick real NSE/BSE stocks, compete with friends, track live prices, and win. Free to play - no real money involved.",
@@ -83,9 +83,9 @@ export const metadata: Metadata = {
     "fantasy stock market league",
     "daily stock contest India",
   ],
-  authors: [{ name: "Stock Arena", url: "https://www.stocksarena.net" }],
-  creator: "Stock Arena",
-  publisher: "Stock Arena",
+  authors: [{ name: "Stocks Arena", url: "https://www.stocksarena.net" }],
+  creator: "Stocks Arena",
+  publisher: "Stocks Arena",
   formatDetection: {
     email: false,
     address: false,
@@ -95,25 +95,25 @@ export const metadata: Metadata = {
     canonical: "https://www.stocksarena.net",
   },
   openGraph: {
-    title: "Stock Arena - India's #1 Stock Market Fantasy Game",
+    title: "Stocks Arena - India's #1 Stock Market Fantasy Game",
     description:
       "Pick real NSE/BSE stocks, compete with friends, track live prices, and win! Free to play.",
     type: "website",
     locale: "en_IN",
-    siteName: "Stock Arena",
+    siteName: "Stocks Arena",
     url: "https://www.stocksarena.net",
     images: [
       {
         url: "/api/og",
         width: 1200,
         height: 630,
-        alt: "Stock Arena - India's Stock Market Fantasy Game",
+        alt: "Stocks Arena - India's Stock Market Fantasy Game",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stock Arena - India's #1 Stock Market Fantasy Game",
+    title: "Stocks Arena - India's #1 Stock Market Fantasy Game",
     description:
       "Pick real NSE/BSE stocks, compete with friends, and win! Free to play.",
     images: ["/api/og"],
@@ -141,7 +141,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Stock Arena",
+  name: "Stocks Arena",
   description:
     "India's first stock market fantasy game. Pick real NSE/BSE stocks, compete with friends, and win!",
   url: "https://www.stocksarena.net",
@@ -161,7 +161,7 @@ const jsonLd = {
   },
   author: {
     "@type": "Organization",
-    name: "Stock Arena",
+    name: "Stocks Arena",
     url: "https://www.stocksarena.net",
   },
 };

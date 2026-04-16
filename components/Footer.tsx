@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Description */}
           <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold gradient-text mb-2">Stock Arena</h3>
+            <h3 className="text-xl font-bold gradient-text mb-2">Stocks Arena</h3>
             <p className="text-sm text-gray-500">
               India&apos;s First Stock Market Fantasy Game
             </p>
@@ -22,7 +22,7 @@ export default function Footer() {
               Terms of Service
             </Link>
             <Link
-              href="mailto:contact@stockarena.net"
+              href="mailto:contact@stocksarena.net"
               className="hover:text-emerald-400 transition-colors"
             >
               Contact
@@ -55,7 +55,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-white/5 text-center">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Stock Arena. All rights reserved.
+            © {new Date().getFullYear()} Stocks Arena. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-# Stock Arena - Robots.txt
+# Stocks Arena - Robots.txt
 User-agent: *
 Allow: /
 

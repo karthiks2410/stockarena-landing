@@ -80,7 +80,7 @@ export default function Hero() {
           className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6"
           style={{ y: textY }}
         >
-          <span className="gradient-text">Stock Arena</span>
+          <span className="gradient-text">Stocks Arena</span>
         </motion.h1>
 
         {/* Tagline */}

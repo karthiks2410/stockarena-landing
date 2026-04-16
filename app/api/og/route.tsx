@@ -75,7 +75,7 @@ export async function GET() {
               textAlign: "center",
             }}
           >
-            Stock Arena
+            Stocks Arena
           </h1>
 
           {/* Tagline */}
