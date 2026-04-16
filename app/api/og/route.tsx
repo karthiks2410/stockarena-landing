@@ -146,7 +146,7 @@ export async function GET() {
             color: "#6b7280",
           }}
         >
-          stockarena.net
+          stocksarena.net
         </div>
       </div>
     ),

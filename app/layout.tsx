@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://stockarena.net"),
+  metadataBase: new URL("https://stocksarena.net"),
   title: "Stock Arena - India's Stock Market Fantasy Game",
   description: "Pick stocks. Compete with friends. Win bragging rights. India's first stock market fantasy game with real NSE/BSE prices.",
   keywords: ["stock market", "fantasy game", "trading", "NSE", "BSE", "India", "stocks", "competition", "fantasy stock", "virtual trading"],
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "Stock Arena",
-    url: "https://stockarena.net",
+    url: "https://stocksarena.net",
     images: [
       {
         url: "/api/og",
