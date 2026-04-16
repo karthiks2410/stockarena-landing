@@ -1,21 +1,45 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
 export default function Download() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.4], [0.9, 1]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-20" id="download">
+    <section ref={sectionRef} className="py-32 px-6 md:px-12 lg:px-20" id="download">
       <div className="w-full max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={{ y, opacity, scale }}
           className="relative text-center p-12 md:p-16 lg:p-20 rounded-[2.5rem] bg-gradient-to-br from-emerald-900/40 via-cyan-900/30 to-purple-900/40 border border-white/10 backdrop-blur-sm overflow-hidden"
         >
-          {/* Background glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-transparent to-purple-500/10 blur-3xl" />
+          {/* Animated background glow */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-transparent to-purple-500/10 blur-3xl"
+            style={{ y: backgroundY }}
+          />
+
+          {/* Floating orbs */}
+          <motion.div
+            className="absolute top-10 left-10 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl"
+            animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+            transition={{ duration: 6, repeat: Infinity }}
+          />
+          <motion.div
+            className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl"
+            animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
 
           {/* Header */}
           <motion.h2
@@ -46,8 +70,9 @@ export default function Download() {
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             {/* App Store - Coming Soon */}
-            <button
+            <motion.button
               disabled
+              whileHover={{ scale: 1.02 }}
               className="relative w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-5 bg-white/5 text-gray-400 rounded-2xl border border-white/10 cursor-not-allowed transition-all duration-300 hover:bg-white/[0.07]"
             >
               <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
@@ -60,11 +85,12 @@ export default function Download() {
               <span className="absolute -top-3 -right-3 text-sm bg-emerald-500 text-white px-3 py-1.5 rounded-full font-medium">
                 Soon
               </span>
-            </button>
+            </motion.button>
 
             {/* Play Store - Coming Soon */}
-            <button
+            <motion.button
               disabled
+              whileHover={{ scale: 1.02 }}
               className="relative w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-5 bg-white/5 text-gray-400 rounded-2xl border border-white/10 cursor-not-allowed transition-all duration-300 hover:bg-white/[0.07]"
             >
               <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
@@ -77,7 +103,7 @@ export default function Download() {
               <span className="absolute -top-3 -right-3 text-sm bg-emerald-500 text-white px-3 py-1.5 rounded-full font-medium">
                 Soon
               </span>
-            </button>
+            </motion.button>
           </motion.div>
 
           {/* Divider */}
@@ -107,7 +133,12 @@ export default function Download() {
               className="group inline-flex items-center gap-4 px-12 py-6 bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-semibold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_60px_rgba(16,185,129,0.5)]"
             >
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                />
               </svg>
               <span>Play on Web App</span>
               <svg

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const steps = [
   {
@@ -47,39 +48,99 @@ const colorMap = {
   },
 };
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
-  },
-};
+function StepCard({
+  step,
+  index,
+}: {
+  step: (typeof steps)[0];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut" as const,
-    },
-  },
-};
+  const y = useTransform(scrollYProgress, [0, 1], [100, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.95]);
+
+  const colors = colorMap[step.color as keyof typeof colorMap];
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ y, opacity, scale }}
+      whileHover={{ scale: 1.02, y: -8 }}
+      className={`group relative p-10 lg:p-12 rounded-3xl ${colors.bg} border ${colors.border} transition-all duration-500 ${colors.shadow} hover:shadow-2xl`}
+    >
+      {/* Glow effect on hover */}
+      <div
+        className={`absolute inset-0 ${colors.glow} rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`}
+      />
+
+      {/* Step number */}
+      <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-[#0a0a0a] border-2 border-white/20 flex items-center justify-center text-lg font-bold text-white z-10">
+        {index + 1}
+      </div>
+
+      {/* Icon */}
+      <motion.div
+        className="relative text-6xl lg:text-7xl mb-8"
+        whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
+        transition={{ duration: 0.4 }}
+      >
+        {step.icon}
+      </motion.div>
+
+      {/* Content */}
+      <h3 className={`relative text-2xl lg:text-3xl font-bold mb-4 ${colors.text}`}>
+        {step.title}
+      </h3>
+      <p className="relative text-lg text-gray-400 leading-relaxed">
+        {step.description}
+      </p>
+
+      {/* Arrow connector (not on last item) */}
+      {index < steps.length - 1 && (
+        <div className="hidden md:flex absolute top-1/2 -right-6 lg:-right-8 transform -translate-y-1/2 text-gray-600 items-center">
+          <motion.svg
+            className="w-10 h-10 lg:w-12 lg:h-12"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            animate={{ x: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+            />
+          </motion.svg>
+        </div>
+      )}
+    </motion.div>
+  );
+}
 
 export default function HowItWorks() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const headerY = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-20" id="how-it-works">
+    <section ref={sectionRef} className="py-32 px-6 md:px-12 lg:px-20" id="how-it-works">
       <div className="w-full max-w-7xl mx-auto">
-        {/* Section header */}
+        {/* Section header with parallax */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={{ y: headerY, opacity: headerOpacity }}
           className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -90,67 +151,12 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        {/* Steps - full width cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-3 gap-8 lg:gap-12"
-        >
-          {steps.map((step, index) => {
-            const colors = colorMap[step.color as keyof typeof colorMap];
-            return (
-              <motion.div
-                key={step.title}
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, y: -8 }}
-                className={`group relative p-10 lg:p-12 rounded-3xl ${colors.bg} border ${colors.border} transition-all duration-500 ${colors.shadow} hover:shadow-2xl`}
-              >
-                {/* Glow effect on hover */}
-                <div className={`absolute inset-0 ${colors.glow} rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
-
-                {/* Step number */}
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-[#0a0a0a] border-2 border-white/20 flex items-center justify-center text-lg font-bold text-white z-10">
-                  {index + 1}
-                </div>
-
-                {/* Icon */}
-                <motion.div
-                  className="relative text-6xl lg:text-7xl mb-8"
-                  whileHover={{ scale: 1.1, rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {step.icon}
-                </motion.div>
-
-                {/* Content */}
-                <h3 className={`relative text-2xl lg:text-3xl font-bold mb-4 ${colors.text}`}>
-                  {step.title}
-                </h3>
-                <p className="relative text-lg text-gray-400 leading-relaxed">
-                  {step.description}
-                </p>
-
-                {/* Arrow connector (not on last item) */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-6 lg:-right-8 transform -translate-y-1/2 text-gray-600 items-center">
-                    <motion.svg
-                      className="w-10 h-10 lg:w-12 lg:h-12"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </motion.svg>
-                  </div>
-                )}
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        {/* Steps with individual scroll animations */}
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          {steps.map((step, index) => (
+            <StepCard key={step.title} step={step} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,63 +1,93 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
 export default function Hero() {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-12 lg:px-20 py-20">
-      {/* Background gradient - full width */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-transparent to-cyan-900/30" />
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
-      {/* Animated background shapes - spread across full width */}
+  // Parallax transforms - Apple-style
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <section
+      ref={ref}
+      className="relative min-h-[120vh] flex items-center justify-center overflow-hidden px-6 md:px-12 lg:px-20"
+    >
+      {/* Background with parallax */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-transparent to-cyan-900/30"
+        style={{ y }}
+      />
+
+      {/* Animated background shapes with parallax */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -top-20 right-0 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[120px]"
+          className="absolute -top-20 right-0 w-[600px] h-[600px] bg-emerald-500/20 rounded-full blur-[150px]"
+          style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "30%"]) }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute -bottom-20 left-0 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[120px]"
+          className="absolute -bottom-20 left-0 w-[700px] h-[700px] bg-cyan-500/20 rounded-full blur-[150px]"
+          style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]) }}
           animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, delay: 2 }}
         />
         <motion.div
-          className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]"
+          className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[120px]"
+          style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "40%"]) }}
           animate={{ scale: [1, 1.1, 1], x: [0, 50, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
-      {/* Grid pattern overlay - full width */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjAyIiBkPSJNMCAwaDYwdjYwSDB6Ii8+PHBhdGggZD0iTTYwIDBIMHY2MGg2MFYwek0xIDFoNTh2NThIMVYxeiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIuMDMiLz48L2c+PC9zdmc+')] opacity-40" />
+      {/* Grid pattern overlay */}
+      <motion.div
+        className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjAyIiBkPSJNMCAwaDYwdjYwSDB6Ii8+PHBhdGggZD0iTTYwIDBIMHY2MGg2MFYwek0xIDFoNTh2NThIMVYxeiIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIuMDMiLz48L2c+PC9zdmc+')] opacity-40"
+        style={{ y }}
+      />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto text-center">
+      {/* Main content with parallax fade */}
+      <motion.div
+        className="relative z-10 w-full max-w-7xl mx-auto text-center pt-20"
+        style={{ opacity, scale }}
+      >
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-sm text-emerald-400">Now Live in India</span>
         </motion.div>
 
-        {/* Main heading - larger */}
+        {/* Main heading with text parallax */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6"
+          style={{ y: textY }}
         >
           <span className="gradient-text">Stock Arena</span>
         </motion.h1>
 
-        {/* Tagline - larger */}
+        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="text-2xl md:text-3xl lg:text-4xl text-gray-400 mb-4"
         >
           India&apos;s First Stock Market Fantasy Game
@@ -67,7 +97,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
           className="text-lg md:text-xl text-gray-500 mb-12 max-w-3xl mx-auto"
         >
           Pick stocks. Compete with friends. Win bragging rights.
@@ -77,7 +107,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <Link
@@ -114,11 +144,11 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* Stats - full width spread */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
           className="grid grid-cols-3 gap-8 md:gap-16 max-w-4xl mx-auto pt-8 border-t border-white/10"
         >
           <div className="text-center">
@@ -134,18 +164,21 @@ export default function Hero() {
             <p className="text-sm md:text-base text-gray-500 mt-2">To Play</p>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ opacity: { delay: 1 }, y: { duration: 2, repeat: Infinity } }}
       >
-        <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs text-gray-500 uppercase tracking-widest">Scroll</span>
+          <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
       </motion.div>
     </section>
   );
