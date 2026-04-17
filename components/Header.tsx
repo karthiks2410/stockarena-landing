@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
+import { AnimatedThemeToggle } from "./ui/animated-theme-toggle";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,7 +41,7 @@ export default function Header() {
 
       {/* Theme toggle on right */}
       <div className="flex items-center">
-        <ThemeToggle />
+        <AnimatedThemeToggle />
       </div>
     </header>
   );
