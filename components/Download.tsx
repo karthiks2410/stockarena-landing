@@ -21,7 +21,7 @@ export default function Download() {
       <div className="w-full max-w-6xl mx-auto">
         <motion.div
           style={{ y, opacity, scale }}
-          className="relative text-center p-12 md:p-16 lg:p-20 rounded-[2.5rem] bg-gradient-to-br from-emerald-900/40 via-cyan-900/30 to-purple-900/40 border border-white/10 backdrop-blur-sm overflow-hidden"
+          className="relative text-center p-12 md:p-16 lg:p-20 rounded-[2.5rem] bg-gradient-to-br from-emerald-500/20 via-cyan-500/15 to-purple-500/20 dark:from-emerald-900/40 dark:via-cyan-900/30 dark:to-purple-900/40 border border-[var(--card-border)] backdrop-blur-sm overflow-hidden"
         >
           {/* Animated background glow */}
           <motion.div
@@ -43,7 +43,7 @@ export default function Download() {
 
           {/* Header */}
           <motion.h2
-            className="relative text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="relative text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--foreground)]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -52,7 +52,7 @@ export default function Download() {
             Get Started <span className="gradient-text">Today</span>
           </motion.h2>
           <motion.p
-            className="relative text-xl text-gray-400 mb-12 max-w-2xl mx-auto"
+            className="relative text-xl text-[var(--foreground-secondary)] mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -73,14 +73,14 @@ export default function Download() {
             <motion.button
               disabled
               whileHover={{ scale: 1.02 }}
-              className="relative w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-5 bg-white/5 text-gray-400 rounded-2xl border border-white/10 cursor-not-allowed transition-all duration-300 hover:bg-white/[0.07]"
+              className="relative w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-5 bg-[var(--card-bg)] text-[var(--foreground-secondary)] rounded-2xl border border-[var(--card-border)] cursor-not-allowed transition-all duration-300 hover:bg-[var(--card-bg)]"
             >
               <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
               </svg>
               <div className="text-left">
-                <p className="text-sm text-gray-500">Download on the</p>
-                <p className="text-lg font-semibold">App Store</p>
+                <p className="text-sm text-[var(--foreground-muted)]">Download on the</p>
+                <p className="text-lg font-semibold text-[var(--foreground)]">App Store</p>
               </div>
               <span className="absolute -top-3 -right-3 text-sm bg-emerald-500 text-white px-3 py-1.5 rounded-full font-medium">
                 Soon
@@ -91,14 +91,14 @@ export default function Download() {
             <motion.button
               disabled
               whileHover={{ scale: 1.02 }}
-              className="relative w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-5 bg-white/5 text-gray-400 rounded-2xl border border-white/10 cursor-not-allowed transition-all duration-300 hover:bg-white/[0.07]"
+              className="relative w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-5 bg-[var(--card-bg)] text-[var(--foreground-secondary)] rounded-2xl border border-[var(--card-border)] cursor-not-allowed transition-all duration-300 hover:bg-[var(--card-bg)]"
             >
               <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
               </svg>
               <div className="text-left">
-                <p className="text-sm text-gray-500">Get it on</p>
-                <p className="text-lg font-semibold">Google Play</p>
+                <p className="text-sm text-[var(--foreground-muted)]">Get it on</p>
+                <p className="text-lg font-semibold text-[var(--foreground)]">Google Play</p>
               </div>
               <span className="absolute -top-3 -right-3 text-sm bg-emerald-500 text-white px-3 py-1.5 rounded-full font-medium">
                 Soon
@@ -114,9 +114,9 @@ export default function Download() {
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <div className="flex-1 h-px bg-white/10" />
-            <span className="text-gray-500 text-lg">or play instantly</span>
-            <div className="flex-1 h-px bg-white/10" />
+            <div className="flex-1 h-px bg-[var(--card-border)]" />
+            <span className="text-[var(--foreground-muted)] text-lg">or play instantly</span>
+            <div className="flex-1 h-px bg-[var(--card-border)]" />
           </motion.div>
 
           {/* Web App Button - Active */}
@@ -158,7 +158,7 @@ export default function Download() {
           </motion.div>
 
           <motion.p
-            className="relative mt-6 text-lg text-gray-500"
+            className="relative mt-6 text-lg text-[var(--foreground-muted)]"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

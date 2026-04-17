@@ -70,7 +70,7 @@ function PhoneCard({
 
       {/* Label */}
       <motion.p
-        className="mt-6 text-base lg:text-lg font-medium text-gray-400"
+        className="mt-6 text-base lg:text-lg font-medium text-[var(--foreground-secondary)]"
         style={{ opacity }}
       >
         {screenshot.label}
@@ -102,10 +102,10 @@ export default function Screenshots() {
           style={{ y: headerY, opacity: headerOpacity, scale: headerScale }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--foreground)]">
             See It In <span className="gradient-text">Action</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-[var(--foreground-secondary)] max-w-3xl mx-auto">
             A beautiful, intuitive interface designed for the best trading experience
           </p>
         </motion.div>

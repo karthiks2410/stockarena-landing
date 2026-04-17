@@ -62,7 +62,7 @@ function FeatureCard({
       style={{ y, opacity, scale }}
       transition={{ delay }}
       whileHover={{ scale: 1.03, y: -8 }}
-      className="group relative p-8 lg:p-10 rounded-3xl bg-white/5 border border-white/10 hover:border-emerald-500/40 transition-all duration-500 hover:bg-white/[0.08] hover:shadow-2xl hover:shadow-emerald-500/10"
+      className="group relative p-8 lg:p-10 rounded-3xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-emerald-500/40 transition-all duration-500 hover:bg-[var(--card-bg)] hover:shadow-2xl hover:shadow-emerald-500/10"
     >
       {/* Glow on hover */}
       <div className="absolute inset-0 bg-emerald-500/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
@@ -77,10 +77,10 @@ function FeatureCard({
       </motion.div>
 
       {/* Content */}
-      <h3 className="relative text-xl lg:text-2xl font-semibold mb-3 text-white group-hover:text-emerald-400 transition-colors duration-300">
+      <h3 className="relative text-xl lg:text-2xl font-semibold mb-3 text-[var(--foreground)] group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors duration-300">
         {feature.title}
       </h3>
-      <p className="relative text-base lg:text-lg text-gray-400 leading-relaxed">
+      <p className="relative text-base lg:text-lg text-[var(--foreground-secondary)] leading-relaxed">
         {feature.description}
       </p>
     </motion.div>
@@ -106,7 +106,7 @@ export default function Features() {
     >
       {/* Background gradient with parallax */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-b from-emerald-900/10 via-cyan-900/5 to-transparent"
+        className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-cyan-500/5 to-transparent dark:from-emerald-900/10 dark:via-cyan-900/5 dark:to-transparent"
         style={{ y: backgroundY }}
       />
 
@@ -116,10 +116,10 @@ export default function Features() {
           style={{ y: headerY, opacity: headerOpacity }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--foreground)]">
             Packed with <span className="gradient-text">Features</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-[var(--foreground-secondary)] max-w-3xl mx-auto">
             Everything you need for an immersive stock market fantasy experience
           </p>
         </motion.div>
