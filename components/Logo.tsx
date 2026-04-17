@@ -115,7 +115,7 @@ export default function Logo({
           }`}
         >
           <span
-            style={{ color: textColors.stocks }}
+            style={variant !== "auto" ? { color: textColors.stocks } : undefined}
             className={
               variant === "auto"
                 ? "text-emerald-500 dark:text-emerald-400"
