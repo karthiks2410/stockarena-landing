@@ -1,29 +1,32 @@
+"use client";
+
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <footer className="py-12 px-4 border-t border-white/10">
+    <footer className="py-12 px-4 border-t border-[var(--card-border)]">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Description */}
           <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold gradient-text mb-2">Stocks Arena</h3>
-            <p className="text-sm text-gray-500">
+            <Logo size={36} />
+            <p className="text-sm text-[var(--foreground-muted)] mt-2">
               India&apos;s First Stock Market Fantasy Game
             </p>
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6 text-sm text-gray-400">
-            <Link href="#" className="hover:text-emerald-400 transition-colors">
+          <div className="flex items-center gap-6 text-sm text-[var(--foreground-secondary)]">
+            <Link href="#" className="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-emerald-400 transition-colors">
+            <Link href="#" className="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors">
               Terms of Service
             </Link>
             <Link
               href="mailto:contact@stocksarena.net"
-              className="hover:text-emerald-400 transition-colors"
+              className="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
             >
               Contact
             </Link>
@@ -33,7 +36,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <a
               href="#"
-              className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-emerald-400 hover:bg-white/10 transition-all"
+              className="w-10 h-10 rounded-full bg-[var(--card-bg)] flex items-center justify-center text-[var(--foreground-secondary)] hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
               aria-label="Twitter"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -42,7 +45,7 @@ export default function Footer() {
             </a>
             <a
               href="#"
-              className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-emerald-400 hover:bg-white/10 transition-all"
+              className="w-10 h-10 rounded-full bg-[var(--card-bg)] flex items-center justify-center text-[var(--foreground-secondary)] hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
               aria-label="Instagram"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -53,8 +56,8 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-white/5 text-center">
-          <p className="text-sm text-gray-500">
+        <div className="mt-8 pt-8 border-t border-[var(--card-border)] text-center">
+          <p className="text-sm text-[var(--foreground-muted)]">
             © {new Date().getFullYear()} Stocks Arena. All rights reserved.
           </p>
         </div>

@@ -28,21 +28,21 @@ const colorMap = {
   emerald: {
     bg: "bg-emerald-500/10",
     border: "border-emerald-500/30",
-    text: "text-emerald-400",
+    text: "text-emerald-600 dark:text-emerald-400",
     shadow: "hover:shadow-emerald-500/20",
     glow: "bg-emerald-500/20",
   },
   cyan: {
     bg: "bg-cyan-500/10",
     border: "border-cyan-500/30",
-    text: "text-cyan-400",
+    text: "text-cyan-600 dark:text-cyan-400",
     shadow: "hover:shadow-cyan-500/20",
     glow: "bg-cyan-500/20",
   },
   purple: {
     bg: "bg-purple-500/10",
     border: "border-purple-500/30",
-    text: "text-purple-400",
+    text: "text-purple-600 dark:text-purple-400",
     shadow: "hover:shadow-purple-500/20",
     glow: "bg-purple-500/20",
   },
@@ -80,7 +80,7 @@ function StepCard({
       />
 
       {/* Step number */}
-      <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-[#0a0a0a] border-2 border-white/20 flex items-center justify-center text-lg font-bold text-white z-10">
+      <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-[var(--background)] border-2 border-[var(--card-border)] flex items-center justify-center text-lg font-bold text-[var(--foreground)] z-10">
         {index + 1}
       </div>
 
@@ -97,13 +97,13 @@ function StepCard({
       <h3 className={`relative text-2xl lg:text-3xl font-bold mb-4 ${colors.text}`}>
         {step.title}
       </h3>
-      <p className="relative text-lg text-gray-400 leading-relaxed">
+      <p className="relative text-lg text-[var(--foreground-secondary)] leading-relaxed">
         {step.description}
       </p>
 
       {/* Arrow connector (not on last item) */}
       {index < steps.length - 1 && (
-        <div className="hidden md:flex absolute top-1/2 -right-6 lg:-right-8 transform -translate-y-1/2 text-gray-600 items-center">
+        <div className="hidden md:flex absolute top-1/2 -right-6 lg:-right-8 transform -translate-y-1/2 text-[var(--foreground-muted)] items-center">
           <motion.svg
             className="w-10 h-10 lg:w-12 lg:h-12"
             fill="none"
@@ -143,10 +143,10 @@ export default function HowItWorks() {
           style={{ y: headerY, opacity: headerOpacity }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[var(--foreground)]">
             How It <span className="gradient-text">Works</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-[var(--foreground-secondary)] max-w-3xl mx-auto">
             Three simple steps to start your stock market fantasy journey
           </p>
         </motion.div>

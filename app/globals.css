@@ -1,10 +1,33 @@
 @import "tailwindcss";
 
 :root {
+  /* Light mode (default) */
+  --background: #ffffff;
+  --background-secondary: #f8fafc;
+  --foreground: #0f172a;
+  --foreground-secondary: #475569;
+  --foreground-muted: #64748b;
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --accent: #059669;
+  --accent-light: #10b981;
+}
+
+[data-theme="dark"] {
   --background: #0a0a0a;
+  --background-secondary: #1a1a2e;
   --foreground: #ededed;
+  --foreground-secondary: #9ca3af;
+  --foreground-muted: #6b7280;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
   --accent: #10b981;
   --accent-light: #34d399;
+}
+
+/* Smooth theme transition */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 @theme inline {
@@ -80,20 +103,33 @@ body {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Scrollbar */
+/* Scrollbar - Light mode */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #c1c1c1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Scrollbar - Dark mode */
+[data-theme="dark"]::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"]::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+[data-theme="dark"]::-webkit-scrollbar-thumb:hover {
   background: #444;
 }

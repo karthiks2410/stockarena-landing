@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-Q3G4SDGV4X";
@@ -192,7 +193,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-[#0a0a0a] text-white">{children}</body>
+      <body className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
