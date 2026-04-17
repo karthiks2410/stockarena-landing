@@ -11,6 +11,19 @@
   --card-border: rgba(0, 0, 0, 0.08);
   --accent: #059669;
   --accent-light: #10b981;
+
+  /* shadcn button variables */
+  --ring: 142 76% 36%;
+  --ring-offset-background: #ffffff;
+  --input: #e5e7eb;
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --accent-shadcn: #f1f5f9;
+  --accent-foreground: #0f172a;
 }
 
 [data-theme="dark"] {
@@ -23,6 +36,19 @@
   --card-border: rgba(255, 255, 255, 0.1);
   --accent: #10b981;
   --accent-light: #34d399;
+
+  /* shadcn button variables */
+  --ring: 142 76% 36%;
+  --ring-offset-background: #0a0a0a;
+  --input: #374151;
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --accent-shadcn: #1e293b;
+  --accent-foreground: #f8fafc;
 }
 
 /* Smooth theme transition */
