@@ -1,5 +1,7 @@
 "use client";
 
+import { useId } from "react";
+
 interface LogoProps {
   size?: number;
   showText?: boolean;
@@ -39,7 +41,8 @@ export default function Logo({
   const textColors = getTextColors();
 
   // Generate unique gradient IDs to avoid conflicts when multiple logos are rendered
-  const gradientId = `logo-gradient-${Math.random().toString(36).substr(2, 9)}`;
+  const uniqueId = useId();
+  const gradientId = `logo-gradient-${uniqueId}`;
 
   return (
     <div className="flex items-center gap-2">
