@@ -19,26 +19,21 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>('light');
+  // Initialize state from localStorage to avoid cascading renders
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem(STORAGE_KEY);
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        return savedTheme;
+      }
+    }
+    return 'light';
+  });
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Set initial document attributes on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
-      setThemeState(savedTheme);
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      // Also set Tailwind dark class
-      if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } else {
-      // Default to light mode
-      document.documentElement.setAttribute('data-theme', 'light');
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.setAttribute('data-theme', theme);
     setMounted(true);
   }, []);
 
@@ -47,12 +42,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     if (mounted) {
       localStorage.setItem(STORAGE_KEY, theme);
       document.documentElement.setAttribute('data-theme', theme);
-      // Also set Tailwind dark class
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
     }
   }, [theme, mounted]);
 
