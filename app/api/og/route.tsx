@@ -13,11 +13,11 @@ export async function GET() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%)",
+          background: "linear-gradient(135deg, #ffffff 0%, #f0fdf4 50%, #ecfeff 100%)",
           position: "relative",
         }}
       >
-        {/* Background glow effects */}
+        {/* Background glow effects - softer for light theme */}
         <div
           style={{
             position: "absolute",
@@ -25,7 +25,7 @@ export async function GET() {
             right: "-100px",
             width: "400px",
             height: "400px",
-            background: "radial-gradient(circle, rgba(16,185,129,0.3) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%)",
             borderRadius: "50%",
           }}
         />
@@ -36,7 +36,7 @@ export async function GET() {
             left: "-100px",
             width: "400px",
             height: "400px",
-            background: "radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)",
             borderRadius: "50%",
           }}
         />
@@ -51,7 +51,7 @@ export async function GET() {
             padding: "40px",
           }}
         >
-          {/* Logo/Icon */}
+          {/* Logo - Arena with rising bars */}
           <div
             style={{
               display: "flex",
@@ -60,7 +60,52 @@ export async function GET() {
               marginBottom: "20px",
             }}
           >
-            <span style={{ fontSize: "80px" }}>📈</span>
+            <svg
+              width="100"
+              height="100"
+              viewBox="0 0 100 100"
+              fill="none"
+            >
+              {/* Outer arena ring */}
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                stroke="url(#ogGradient)"
+                strokeWidth="4"
+                fill="none"
+              />
+              {/* Inner arena ring */}
+              <circle
+                cx="50"
+                cy="50"
+                r="35"
+                stroke="#10b981"
+                strokeWidth="2"
+                fill="none"
+                opacity="0.3"
+              />
+              {/* Rising bars */}
+              <rect x="25" y="55" width="10" height="20" rx="2" fill="#10b981" />
+              <rect x="38" y="45" width="10" height="30" rx="2" fill="#06b6d4" />
+              <rect x="51" y="35" width="10" height="40" rx="2" fill="#8b5cf6" />
+              <rect x="64" y="25" width="10" height="50" rx="2" fill="url(#ogGradient)" />
+              {/* Crown */}
+              <path
+                d="M45 20 L50 10 L55 20 M47 15 L50 10 L53 15"
+                stroke="#fbbf24"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <defs>
+                <linearGradient id="ogGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#10b981" />
+                  <stop offset="50%" stopColor="#06b6d4" />
+                  <stop offset="100%" stopColor="#8b5cf6" />
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
 
           {/* Title */}
@@ -82,7 +127,7 @@ export async function GET() {
           <p
             style={{
               fontSize: "32px",
-              color: "#9ca3af",
+              color: "#475569",
               margin: "0 0 30px 0",
               textAlign: "center",
             }}
@@ -103,8 +148,9 @@ export async function GET() {
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
-                color: "#10b981",
+                color: "#059669",
                 fontSize: "24px",
+                fontWeight: "600",
               }}
             >
               <span>📊</span>
@@ -115,8 +161,9 @@ export async function GET() {
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
-                color: "#06b6d4",
+                color: "#0891b2",
                 fontSize: "24px",
+                fontWeight: "600",
               }}
             >
               <span>🏆</span>
@@ -127,8 +174,9 @@ export async function GET() {
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
-                color: "#8b5cf6",
+                color: "#7c3aed",
                 fontSize: "24px",
+                fontWeight: "600",
               }}
             >
               <span>🆓</span>
@@ -143,7 +191,8 @@ export async function GET() {
             position: "absolute",
             bottom: "30px",
             fontSize: "24px",
-            color: "#6b7280",
+            color: "#64748b",
+            fontWeight: "500",
           }}
         >
           stocksarena.net
