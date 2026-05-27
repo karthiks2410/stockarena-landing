@@ -3,7 +3,6 @@
 import {
   ConsentBanner,
   ConsentDialog,
-  ConsentDialogTrigger,
   ConsentManagerProvider,
 } from "@c15t/react";
 import type { ReactNode } from "react";
@@ -38,7 +37,6 @@ export function ConsentManager({ children }: { children: ReactNode }) {
     >
       <ConsentBanner />
       <ConsentDialog />
-      <ConsentDialogTrigger />
       {children}
     </ConsentManagerProvider>
   );
