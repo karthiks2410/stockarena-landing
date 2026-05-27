@@ -1,5 +1,6 @@
 "use client";
 
+import { ConsentDialogLink } from "@c15t/react";
 import Link from "next/link";
 import Logo from "./Logo";
 
@@ -30,6 +31,9 @@ export default function Footer() {
             >
               Contact
             </Link>
+            <ConsentDialogLink className="hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors cursor-pointer bg-transparent border-0 p-0 font-inherit text-inherit">
+              Cookie preferences
+            </ConsentDialogLink>
           </div>
 
           {/* Social Links */}

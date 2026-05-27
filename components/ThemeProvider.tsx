@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useSyncExternalStore } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -18,6 +18,10 @@ interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 export function ThemeProvider({ children }: ThemeProviderProps) {
   // Initialize state from localStorage to avoid cascading renders
   const [theme, setThemeState] = useState<Theme>(() => {
@@ -29,19 +33,13 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     }
     return 'light';
   });
-  const [mounted, setMounted] = useState(false);
-
-  // Set initial document attributes on mount
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   // Update localStorage and document attribute when theme changes
   useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
     if (mounted) {
       localStorage.setItem(STORAGE_KEY, theme);
-      document.documentElement.setAttribute('data-theme', theme);
     }
   }, [theme, mounted]);
 
